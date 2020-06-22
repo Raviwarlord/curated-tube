@@ -81,7 +81,7 @@ export default class Login extends React.Component {
         <Button
           title="Login"
           style={styles.logo}
-          onPress={() => console.log(this.state)}
+          onPress={() => this.props.navigation.navigate("HomeScreen")}
         />
       </View>
     );
