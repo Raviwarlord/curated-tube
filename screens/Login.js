@@ -12,6 +12,7 @@ import {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "steelblue",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
@@ -22,21 +23,25 @@ const styles = StyleSheet.create({
     fontSize: 50,
     fontFamily: "sans-serif-medium",
     color: "#fb5b5a",
-    marginBottom: 40,
+    margin: 10,
   },
   inputView: {
-    backgroundColor: "#465881",
-    borderRadius: 25,
-    height: 50,
-    marginBottom: 20,
-    justifyContent: "center",
-    padding: 20,
+    width: 350,
+    height: 55,
+    backgroundColor: "#42A5F5",
+    margin: 10,
+    padding: 8,
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: "500",
   },
   inputText: {
-    height: 50,
+    height: 55,
     position: "relative",
+    fontSize: 18,
     alignContent: "center",
     color: "white",
+    fontWeight: "500",
   },
 });
 
@@ -55,7 +60,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text style={styles.logo}>Hey there</Text>
         <View style={styles.inputView}>
           <TextInput
@@ -78,11 +83,23 @@ export default class Login extends React.Component {
             }
           />
         </View>
-        <Button
-          title="Login"
-          style={styles.logo}
-          onPress={() => this.props.navigation.navigate("HomeScreen")}
-        />
+        <View
+          style={{
+            flexDirection: "column",
+            height: 90,
+            width: 150,
+            justifyContent: "space-around",
+          }}
+        >
+          <Button
+            title="Login"
+            onPress={() => this.props.navigation.navigate("HomeScreen")}
+          />
+          <Button
+            title="Sing Up"
+            onPress={() => this.props.navigation.navigate("SignUpScreen")}
+          />
+        </View>
       </View>
     );
   }
