@@ -12,6 +12,8 @@ export default class SignUp extends React.Component {
     this.setState({ [key]: val });
   };
 
+  signUp() {}
+
   render() {
     return (
       <View style={styles.container}>
@@ -44,7 +46,20 @@ export default class SignUp extends React.Component {
           placeholderTextColor="#003f5c"
           onChangeText={(val) => this.onChangeText("phone_number", val)}
         />
-        <Button title="Sign Up" onPress={this.signUp} />
+        <View
+          style={{
+            flexDirection: "column",
+            height: 90,
+            width: 150,
+            justifyContent: "space-around",
+          }}
+        >
+          <Button title="Sign Up" onPress={this.signUp} />
+          <Button
+            title="logout"
+            onPress={() => this.props.navigation.navigate("LoginScreen")}
+          />
+        </View>
       </View>
     );
   }
@@ -56,9 +71,9 @@ const styles = StyleSheet.create({
     height: 55,
     backgroundColor: "#42A5F5",
     margin: 10,
-    padding: 8,
+    padding: 15,
     color: "white",
-    borderRadius: 14,
+    borderRadius: 30,
     fontSize: 18,
     fontWeight: "500",
   },
