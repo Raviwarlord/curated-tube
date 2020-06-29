@@ -2,9 +2,11 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, TextInput, Text, View, Button } from "react-native";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createStackNavigator } from "react-navigation-stack";
 import Account from "./Account";
 import CategoryList from "../Components/CategoryList";
 import { ScrollView } from "react-native-gesture-handler";
+import CategoryScreen from "./CategoryScreen";
 
 const styles = StyleSheet.create({
   inputText: {
@@ -26,55 +28,56 @@ const styles = StyleSheet.create({
 });
 
 class Main extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: () => <Ionicons name={"ios-home"} size={25} color="red" />,
-  };
-
   render() {
     return (
       <ScrollView
         style={{
           marginTop: 30,
+          backgroundColor: "steelblue",
         }}
       >
-        <View
-          style={{
-            padding: 10,
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.inputView}>
-            <TextInput style={styles.inputText} placeholder="Search..." />
-          </View>
-          <View
-            style={{
-              padding: 20,
-            }}
-          >
-            <Button title="search" />
-          </View>
-        </View>
-        <View
-          style={{
-            padding: 15,
-          }}
-        >
-          <Button
-            title="logout"
-            onPress={() => this.props.navigation.navigate("LoginScreen")}
-          />
-        </View>
+        <Button
+          title="logout"
+          onPress={() => this.props.navigation.navigate("LoginScreen")}
+        />
+        <Button
+          title="press"
+          onPress={() => this.props.navigation.navigate("CategoryScreen")}
+        />
         <CategoryList />
       </ScrollView>
     );
   }
 }
 
+const mainStack = createStackNavigator(
+  {
+    MainScreen: {
+      screen: Main,
+    },
+    CategoryScreen: CategoryScreen,
+  },
+  {
+    initialRouteName: "MainScreen",
+  }
+);
+
 const MainNavigator = createBottomTabNavigator(
   {
-    MainScreen: Main,
-    AccountScreen: Account,
+    MainScreen: {
+      screen: mainStack,
+      navigationOptions: {
+        tabBarIcon: () => <Ionicons name={"ios-home"} size={25} color="red" />,
+      },
+    },
+    AccountScreen: {
+      screen: Account,
+      navigationOptions: {
+        tabBarIcon: () => (
+          <Ionicons name={"ios-settings"} size={25} color="red" />
+        ),
+      },
+    },
   },
   {
     tabBarOptions: {

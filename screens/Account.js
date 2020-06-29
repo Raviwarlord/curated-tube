@@ -7,16 +7,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-    justifyContent: "center",
+    alignContent: "center",
     alignItems: "center",
     padding: 10,
   },
 });
 
 class Account extends React.Component {
-  static navigationOptions = {
-    tabBarIcon: () => <Ionicons name={"ios-settings"} size={25} color="red" />,
-  };
   render() {
     return (
       <View>
@@ -26,4 +23,10 @@ class Account extends React.Component {
   }
 }
 
-export default Account;
+const AccountStack = createStackNavigator({
+  Account: {
+    screen: Account,
+  },
+});
+
+export default AccountStack;
