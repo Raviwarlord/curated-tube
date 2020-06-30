@@ -4,9 +4,10 @@ import { StyleSheet, TextInput, Text, View, Button } from "react-native";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import Account from "./Account";
-import CategoryList from "../Components/CategoryList";
 import { ScrollView } from "react-native-gesture-handler";
 import CategoryScreen from "./CategoryScreen";
+import Category from "../Components/Category";
+import SearchBar from "../Components/SearchBar";
 
 const styles = StyleSheet.create({
   inputText: {
@@ -28,11 +29,19 @@ const styles = StyleSheet.create({
 });
 
 class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      categoryList: [
+        { title: "Machine Learning", numVideos: "21", selected: false },
+        { title: "React Native", numVideos: "14", selected: false },
+      ],
+    };
+  }
   render() {
     return (
       <ScrollView
         style={{
-          marginTop: 30,
           backgroundColor: "steelblue",
         }}
       >
@@ -40,11 +49,18 @@ class Main extends React.Component {
           title="logout"
           onPress={() => this.props.navigation.navigate("LoginScreen")}
         />
-        <Button
-          title="press"
-          onPress={() => this.props.navigation.navigate("CategoryScreen")}
-        />
-        <CategoryList />
+        <SearchBar />
+        {this.state.categoryList.map((category) => (
+          <Category
+            onSelectCategory={() => {
+              this.props.navigation.navigate("CategoryScreen", {
+                title: category.title,
+                numVideos: category.numVideos,
+              });
+            }}
+            category={category}
+          />
+        ))}
       </ScrollView>
     );
   }

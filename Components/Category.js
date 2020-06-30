@@ -30,9 +30,14 @@ export default class Category extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.textView}>
-          <Text style={styles.textView}>{this.state.title}</Text>
-          <Text style={styles.textView}>{this.state.numVideos} Videos</Text>
+        <TouchableOpacity
+          style={styles.textView}
+          onPress={this.props.onSelectCategory}
+        >
+          <Text style={styles.textView}>{this.props.category.title}</Text>
+          <Text style={styles.textView}>
+            {this.props.category.numVideos} Videos
+          </Text>
         </TouchableOpacity>
       </View>
     );

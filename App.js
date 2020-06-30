@@ -6,7 +6,6 @@ import { createSwitchNavigator } from "react-navigation";
 import Login from "./screens/Login";
 import MainNavigator from "./screens/Main";
 import SignUp from "./screens/SignUp";
-import List from "./screens/List";
 import { createStackNavigator } from "react-navigation-stack";
 
 class App extends React.Component {
