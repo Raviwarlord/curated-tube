@@ -30,8 +30,7 @@ const styles = StyleSheet.create({
     height: 55,
     backgroundColor: "#42A5F5",
     margin: 10,
-    padding: 8,
-    borderRadius: 14,
+    borderRadius: 30,
     fontSize: 18,
     fontWeight: "500",
   },
@@ -39,6 +38,7 @@ const styles = StyleSheet.create({
     height: 55,
     position: "relative",
     fontSize: 18,
+    padding: 15,
     alignContent: "center",
     color: "white",
     fontWeight: "500",
@@ -65,7 +65,7 @@ export default class Login extends React.Component {
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
-            placeholder="email"
+            placeholder="Email..."
             placeholderTextColor="#003f5c"
             onChangeText={(text) =>
               this.setState({ email: text, password: this.state.password })
@@ -75,7 +75,7 @@ export default class Login extends React.Component {
         <View style={styles.inputView}>
           <TextInput
             style={styles.inputText}
-            placeholder="password"
+            placeholder="Password..."
             placeholderTextColor="#003f5c"
             secureTextEntry={true}
             onChangeText={(text) =>
@@ -96,7 +96,7 @@ export default class Login extends React.Component {
             onPress={() => this.props.navigation.navigate("HomeScreen")}
           />
           <Button
-            title="Sing Up"
+            title="Sign Up"
             onPress={() => this.props.navigation.navigate("SignUpScreen")}
           />
         </View>

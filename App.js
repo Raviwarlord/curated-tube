@@ -3,10 +3,10 @@ import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
 import Login from "./screens/Login";
-import Main from "./screens/Main";
+import MainNavigator from "./screens/Main";
 import SignUp from "./screens/SignUp";
+import { createStackNavigator } from "react-navigation-stack";
 
 class App extends React.Component {
   render() {
@@ -18,9 +18,9 @@ class App extends React.Component {
   }
 }
 
-const AppNavigator = createStackNavigator(
+const AppNavigator = createSwitchNavigator(
   {
-    HomeScreen: Main,
+    HomeScreen: MainNavigator,
     LoginScreen: Login,
     SignUpScreen: SignUp,
   },
