@@ -7,7 +7,9 @@ import {
   Image,
   TextInput,
   Button,
+  TouchableOpacity,
 } from "react-native";
+import Firebase from "../Config/Firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -54,9 +56,15 @@ export default class Login extends React.Component {
     };
   }
 
-  print() {
-    console.log(this.state);
-  }
+  handleLogin = () => {
+    const Email = this.state.email;
+    const Pass = this.state.password;
+
+    Firebase.auth()
+      .signInWithEmailAndPassword(Email, Pass)
+      .then(() => this.props.navigation.navigate("MainScreen"))
+      .catch((error) => console.log(error));
+  };
 
   render() {
     return (
@@ -91,15 +99,21 @@ export default class Login extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <Button
-            title="Login"
-            onPress={() => this.props.navigation.navigate("HomeScreen")}
-          />
-          <Button
-            title="Sign Up"
-            onPress={() => this.props.navigation.navigate("SignUpScreen")}
-          />
+          <Button title="Login" onPress={this.handleLogin} />
         </View>
+        <TouchableOpacity
+          onPress={() => this.props.navigation.navigate("SignUpScreen")}
+        >
+          <Text
+            style={{
+              fontSize: 20,
+              fontWeight: 400,
+              color: "black",
+            }}
+          >
+            Don't have an account? Sign Up
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

@@ -33,8 +33,8 @@ class Main extends React.Component {
     super(props);
     this.state = {
       categoryList: [
-        { title: "Machine Learning", numVideos: "21", selected: false },
-        { title: "React Native", numVideos: "14", selected: false },
+        { title: "Machine Learning", numVideos: "21" },
+        { title: "React Native", numVideos: "14" },
       ],
     };
   }
