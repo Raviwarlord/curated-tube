@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Button, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Button,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
+import Firebase from "../Config/Firebase";
 
 export default class SignUp extends React.Component {
   state = {
@@ -12,7 +19,15 @@ export default class SignUp extends React.Component {
     this.setState({ [key]: val });
   };
 
-  signUp() {}
+  handleSignUp = () => {
+    const Email = this.state.email;
+    const Pass = this.state.password;
+
+    Firebase.auth()
+      .createUserWithEmailAndPassword(Email, Pass)
+      .then(() => this.props.navigation.navigate("MainScreen"))
+      .catch((error) => console.log(error));
+  };
 
   render() {
     return (
@@ -54,7 +69,7 @@ export default class SignUp extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <Button title="Sign Up" onPress={this.signUp} />
+          <Button title="Sign Up" onPress={this.handleSignUp} />
           <Button
             title="logout"
             onPress={() => this.props.navigation.navigate("LoginScreen")}

@@ -1,5 +1,4 @@
 import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, View, Text } from "react-native";
 import { createStackNavigator } from "react-navigation-stack";
 
@@ -13,15 +12,13 @@ const styles = StyleSheet.create({
   },
 });
 
-class Account extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text style={styles.container}>Email =</Text>
-      </View>
-    );
-  }
-}
+const Account = () => {
+  return (
+    <View>
+      <Text style={styles.container}>Email =</Text>
+    </View>
+  );
+};
 
 const AccountStack = createStackNavigator({
   Account: {

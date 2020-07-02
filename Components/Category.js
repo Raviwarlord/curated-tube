@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignContent: "center",
     alignItems: "center",
-    fontWeight: 20,
+    fontWeight: "400",
   },
 });
 

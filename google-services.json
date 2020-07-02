@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1015070410238",
+    "firebase_url": "https://curated-tube.firebaseio.com",
+    "project_id": "curated-tube",
+    "storage_bucket": "curated-tube.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015070410238:android:83409e3070784e86ae6caf",
+        "android_client_info": {
+          "package_name": "com.raviwarlord.curatedTube"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015070410238-fvan3mtqvtqt0vlbevv3ou9vhs3tal16.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1dv50BTb27x0drkQixZA9MWysdi1rP6Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015070410238-fvan3mtqvtqt0vlbevv3ou9vhs3tal16.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
