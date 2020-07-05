@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createSwitchNavigator } from "react-navigation";
 import Login from "./screens/Login";
-import MainNavigator from "./screens/Main";
+import { MainNavigator } from "./screens/Main";
 import SignUp from "./screens/SignUp";
 import { createStackNavigator } from "react-navigation-stack";
 
@@ -18,11 +18,26 @@ class App extends React.Component {
   }
 }
 
-const AppNavigator = createSwitchNavigator(
+const AppNavigator = createStackNavigator(
   {
-    HomeScreen: MainNavigator,
-    LoginScreen: Login,
-    SignUpScreen: SignUp,
+    HomeScreen: {
+      screen: MainNavigator,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    LoginScreen: {
+      screen: Login,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
+    SignUpScreen: {
+      screen: SignUp,
+      navigationOptions: {
+        headerShown: false,
+      },
+    },
   },
   {
     initialRouteName: "LoginScreen",
@@ -38,5 +53,4 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
-
 export default createAppContainer(AppNavigator);

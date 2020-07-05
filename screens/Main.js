@@ -1,7 +1,7 @@
 import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { StyleSheet, TextInput, Text, View, Button } from "react-native";
-import { createBottomTabNavigator } from "react-navigation-tabs";
+import { createBottomTabNavigator, BottomTabBar } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import Account from "./Account";
 import { ScrollView } from "react-native-gesture-handler";
@@ -33,11 +33,18 @@ class Main extends React.Component {
     super(props);
     this.state = {
       categoryList: [
-        { title: "Machine Learning", numVideos: "21", selected: false },
-        { title: "React Native", numVideos: "14", selected: false },
+        { title: "Machine Learning", numVideos: "21" },
+        { title: "React Native", numVideos: "14" },
       ],
     };
   }
+
+  getAccountDetails = () => {
+    const message = this.props.navigation.getParam("message");
+
+    console.log(this.props.navigation.state.params);
+  };
+
   render() {
     return (
       <ScrollView
@@ -45,6 +52,10 @@ class Main extends React.Component {
           backgroundColor: "steelblue",
         }}
       >
+        <Button
+          title="press me please"
+          onPress={() => this.getAccountDetails()}
+        />
         <Button
           title="logout"
           onPress={() => this.props.navigation.navigate("LoginScreen")}
@@ -98,6 +109,7 @@ const MainNavigator = createBottomTabNavigator(
   {
     tabBarOptions: {
       activeTintColor: "red",
+      inactiveTintColor: "grey",
     },
   },
   {
@@ -105,4 +117,4 @@ const MainNavigator = createBottomTabNavigator(
   }
 );
 
-export default MainNavigator;
+export { MainNavigator, mainStack };
