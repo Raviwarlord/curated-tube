@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Button, TextInput, StyleSheet } from "react-native";
-import Firebase from "../Config/Firebase";
+import { Firebase, db } from "../Config/Firebase";
 
 export default class SignUp extends React.Component {
   state = {
@@ -9,23 +9,34 @@ export default class SignUp extends React.Component {
     email: "",
     phone_number: "",
   };
+
   onChangeText = (key, val) => {
     this.setState({ [key]: val });
   };
 
-  handleSignUp = () => {
-    const Email = this.state.email;
-    const Pass = this.state.password;
-    const message = "this is a signup message";
+  checkEmail = (email) => {
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+    if (reg.test(email.value) == false) this.onChangeText("email", email);
+  };
 
-    Firebase.auth()
-      .createUserWithEmailAndPassword(Email, Pass)
-      .then(() =>
-        this.props.navigation.navigate("MainScreen", {
-          accountDetails: this.state,
-        })
-      )
-      .catch((error) => console.log(error));
+  handleSignUp = () => {
+    return async () => {
+      try {
+        const user = this.state;
+        console.log(user);
+        const response = await Firebase.auth().createUserWithEmailAndPassword(
+          user.email,
+          user.password
+        );
+
+        if (response.user.uid) {
+          db.collection("users").doc(response.user.uid).set(user);
+          this.props.navigation.navigate("LoginScreen");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
   };
 
   render() {
@@ -59,6 +70,7 @@ export default class SignUp extends React.Component {
           autoCapitalize="none"
           placeholderTextColor="#003f5c"
           onChangeText={(val) => this.onChangeText("phone_number", val)}
+          keyboardType="numeric"
         />
         <View
           style={{
@@ -68,7 +80,7 @@ export default class SignUp extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <Button title="Sign Up" onPress={this.handleSignUp} />
+          <Button title="Sign Up" onPress={this.handleSignUp()} />
           <Button
             title="logout"
             onPress={() => this.props.navigation.navigate("LoginScreen")}

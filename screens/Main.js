@@ -40,9 +40,7 @@ class Main extends React.Component {
   }
 
   getAccountDetails = () => {
-    const message = this.props.navigation.getParam("message");
-
-    console.log(this.props.navigation.state.params);
+    return this.props.navigation.getParam("accountDetails");
   };
 
   render() {
@@ -52,10 +50,22 @@ class Main extends React.Component {
           backgroundColor: "steelblue",
         }}
       >
-        <Button
-          title="press me please"
-          onPress={() => this.getAccountDetails()}
-        />
+        <View
+          style={{
+            margin: 20,
+            alignContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: 12,
+            }}
+          >
+            Welcome {this.getAccountDetails().username}!
+          </Text>
+        </View>
         <Button
           title="logout"
           onPress={() => this.props.navigation.navigate("LoginScreen")}
