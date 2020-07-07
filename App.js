@@ -2,9 +2,8 @@ import "react-native-gesture-handler";
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import { createAppContainer } from "react-navigation";
-import { createSwitchNavigator } from "react-navigation";
 import Login from "./screens/Login";
-import { MainNavigator } from "./screens/Main";
+import mainStack from "./screens/Main";
 import SignUp from "./screens/SignUp";
 import { createStackNavigator } from "react-navigation-stack";
 
@@ -21,7 +20,7 @@ class App extends React.Component {
 const AppNavigator = createStackNavigator(
   {
     HomeScreen: {
-      screen: MainNavigator,
+      screen: mainStack,
       navigationOptions: {
         headerShown: false,
       },

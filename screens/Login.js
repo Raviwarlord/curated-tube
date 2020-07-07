@@ -4,9 +4,9 @@ import {
   Text,
   View,
   TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
+import { Button } from "react-native-paper";
 import { Firebase, db } from "../Config/Firebase";
 
 const styles = StyleSheet.create({
@@ -31,8 +31,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#42A5F5",
     margin: 10,
     borderRadius: 30,
-    fontSize: 18,
-    fontWeight: "500",
   },
   inputText: {
     height: 55,
@@ -53,7 +51,6 @@ export default class Login extends React.Component {
       password: "",
     };
   }
-
   handleLogin = () => {
     return async () => {
       try {
@@ -95,6 +92,7 @@ export default class Login extends React.Component {
             onChangeText={(text) =>
               this.setState({ email: this.state.email, password: text })
             }
+            autoCapitalize="none"
           />
         </View>
         <View
@@ -105,7 +103,9 @@ export default class Login extends React.Component {
             justifyContent: "space-around",
           }}
         >
-          <Button title="Login" onPress={this.handleLogin()} />
+          <Button mode="contained" color="#42A5F5" onPress={this.handleLogin()}>
+            Login
+          </Button>
         </View>
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate("SignUpScreen")}
@@ -113,7 +113,7 @@ export default class Login extends React.Component {
           <Text
             style={{
               fontSize: 20,
-              fontWeight: 400,
+              fontWeight: "400",
               color: "black",
             }}
           >

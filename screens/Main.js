@@ -1,7 +1,6 @@
 import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, TextInput, Text, View, Button } from "react-native";
-import { createBottomTabNavigator, BottomTabBar } from "react-navigation-tabs";
+import { StyleSheet, Text, View } from "react-native";
+import { Button } from "react-native-paper";
 import { createStackNavigator } from "react-navigation-stack";
 import Account from "./Account";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
     alignContent: "center",
     alignItems: "center",
     color: "white",
-    fontWeight: "500",
   },
   inputView: {
     height: 50,
@@ -33,11 +31,35 @@ class Main extends React.Component {
     super(props);
     this.state = {
       categoryList: [
-        { title: "Machine Learning", numVideos: "21" },
-        { title: "React Native", numVideos: "14" },
+        { title: "Machine Learning", numVideos: "21", list: [] },
+        { title: "React Native", numVideos: "14", list: [] },
       ],
     };
   }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: "hey how you doin'g?",
+      headerRight: () => (
+        <View style={{ margin: 10 }}>
+          <Button
+            icon="account"
+            mode="outlined"
+            color="#42A5F5"
+            onPress={() =>
+              navigation.navigate("AccountScreen", {
+                accountDetails: navigation.getParam("accountDetails"),
+              })
+            }
+          >
+            Account
+          </Button>
+        </View>
+      ),
+    };
+  };
+
+  componentDidMount() {}
 
   getAccountDetails = () => {
     return this.props.navigation.getParam("accountDetails");
@@ -56,27 +78,13 @@ class Main extends React.Component {
             alignContent: "center",
             alignItems: "center",
           }}
-        >
-          <Text
-            style={{
-              fontSize: 30,
-              fontWeight: 12,
-            }}
-          >
-            Welcome {this.getAccountDetails().username}!
-          </Text>
-        </View>
-        <Button
-          title="logout"
-          onPress={() => this.props.navigation.navigate("LoginScreen")}
-        />
+        ></View>
         <SearchBar />
         {this.state.categoryList.map((category) => (
           <Category
             onSelectCategory={() => {
               this.props.navigation.navigate("CategoryScreen", {
-                title: category.title,
-                numVideos: category.numVideos,
+                category: category,
               });
             }}
             category={category}
@@ -93,38 +101,44 @@ const mainStack = createStackNavigator(
       screen: Main,
     },
     CategoryScreen: CategoryScreen,
+    AccountScreen: Account,
   },
   {
     initialRouteName: "MainScreen",
   }
 );
 
-const MainNavigator = createBottomTabNavigator(
-  {
-    MainScreen: {
-      screen: mainStack,
-      navigationOptions: {
-        tabBarIcon: () => <Ionicons name={"ios-home"} size={25} color="red" />,
-      },
-    },
-    AccountScreen: {
-      screen: Account,
-      navigationOptions: {
-        tabBarIcon: () => (
-          <Ionicons name={"ios-settings"} size={25} color="red" />
-        ),
-      },
-    },
-  },
-  {
-    tabBarOptions: {
-      activeTintColor: "red",
-      inactiveTintColor: "grey",
-    },
-  },
-  {
-    initialRouteName: "MainScreen",
-  }
-);
+export default mainStack;
 
-export { MainNavigator, mainStack };
+// const MainNavigator = createStackNavigator({
+//   MainScreen: Main,
+//   AccountScreen: Account,
+// });
+
+// const MainNavigator = createBottomTabNavigator(
+//   {
+//     MainScreen: {
+//       screen: mainStack,
+//       navigationOptions: {
+//         tabBarIcon: () => <Ionicons name={"ios-home"} size={25} color="red" />,
+//       },
+//     },
+//     AccountScreen: {
+//       screen: Account,
+//       navigationOptions: {
+//         tabBarIcon: () => (
+//           <Ionicons name={"ios-settings"} size={25} color="red" />
+//         ),
+//       },
+//     },
+//   },
+//   {
+//     tabBarOptions: {
+//       activeTintColor: "red",
+//       inactiveTintColor: "grey",
+//     },
+//   },
+//   {
+//     initialRouteName: "MainScreen",
+//   }
+// );

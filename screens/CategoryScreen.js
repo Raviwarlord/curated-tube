@@ -2,6 +2,10 @@ import React from "react";
 import { ScrollView, View, Text, Button } from "react-native";
 
 export default class CategoryScreen extends React.Component {
+  getCategory = () => {
+    return this.props.navigation.getParam("category");
+  };
+
   render() {
     return (
       <View
@@ -18,7 +22,7 @@ export default class CategoryScreen extends React.Component {
             fontWeight: "bold",
           }}
         >
-          {this.props.navigation.getParam("title")}
+          {this.getCategory().title}
         </Text>
         <Text
           style={{
@@ -28,7 +32,7 @@ export default class CategoryScreen extends React.Component {
             fontWeight: "bold",
           }}
         >
-          {this.props.navigation.getParam("numVideos")}
+          {this.getCategory().numVideos}
         </Text>
       </View>
     );
