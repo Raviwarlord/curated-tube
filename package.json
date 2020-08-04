@@ -11,9 +11,12 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
-    "firebase": "^7.15.5",
+    "firebase": "^7.14.1",
+    "firebase-admin": "^8.13.0",
     "react": "16.13.1",
+    "react-devtools": "^4.8.1",
     "react-native": "0.63.0",
+    "react-native-dotenv": "^2.2.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-paper": "^3.10.1",
     "react-native-safe-area-context": "^3.0.7",

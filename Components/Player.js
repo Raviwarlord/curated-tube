@@ -1,28 +1,41 @@
-import React, { useRef, useState } from "react";
-import { ScrollView, View, Text, Button } from "react-native";
-import YoutubePlayer from "react-native-youtube-iframe";
+import React from 'react';
+import {View, Text} from 'react-native';
+import YouTube from 'react-native-youtube';
 
-export default function Player() {
-  const playerRef = useRef(null);
-  const [playing, setPlaying] = useState(true);
+class Player extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <YoutubePlayer
-      ref={playerRef}
-      height={300}
-      width={400}
-      videoId={"X52b-8y2Hf4"}
-      play={playing}
-      onChangeState={(event) => console.log(event)}
-      onReady={() => console.log("ready")}
-      onError={(e) => console.log(e)}
-      onPlaybackQualityChange={(q) => console.log(q)}
-      volume={50}
-      playbackRate={1}
-      initialPlayerParams={{
-        cc_lang_pref: "us",
-        showClosedCaptions: true,
-      }}
-    />
-  );
+    this.state = {
+      propsRecived: 0,
+      isReady: false,
+      status: '',
+      quality: '',
+      error: '',
+      isFullScreen: '',
+      shouldRender: false,
+    };
+  }
+
+  render() {
+    return (
+      <YouTube
+        apiKey="AIzaSyDAasiScAyyjLgOxFZP0gsmRxwimmlNTdk"
+        videoId={this.props.videoId} // The YouTube video ID
+        play={true} // control playback of video with true/false
+        fullscreen={true} // control whether the video should play in fullscreen or inline
+        loop={false} // control whether the video should loop when ended
+        onReady={(e) => this.setState({isReady: true})}
+        onChangeState={(e) => this.setState({status: e.state})}
+        onChangeQuality={(e) => this.setState({quality: e.quality})}
+        onError={(e) => this.setState({error: e.error})}
+        style={{
+          alignSelf: 'stretch',
+          height: 250,
+        }}
+      />
+    );
+  }
 }
+
+export default Player;

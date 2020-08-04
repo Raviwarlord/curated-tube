@@ -1,18 +1,18 @@
-import firebase from "firebase";
-import "firebase/firestore";
+import firebase from 'firebase';
+import 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCB0XHqXY4jlG4CUF4iJr90JJX9Jhapttg",
-  authDomain: "curated-tube.firebaseapp.com",
-  databaseURL: "https://curated-tube.firebaseio.com",
-  projectId: "curated-tube",
-  storageBucket: "curated-tube.appspot.com",
-  messagingSenderId: "1015070410238",
-  appId: "1:1015070410238:web:b37fa65e8586cc07ae6caf",
-  measurementId: "G-96MEY7K1S4",
+  apiKey: 'AIzaSyAIrnMgut6J7CFB0srTxyVCIFKtceXC7Uk',
+  authDomain: 'curated-tube-ac4c1.firebaseapp.com',
+  databaseURL: 'https://curated-tube-ac4c1.firebaseio.com',
+  projectId: 'curated-tube-ac4c1',
+  storageBucket: 'curated-tube-ac4c1.appspot.com',
+  messagingSenderId: '944756446335',
+  appId: '1:944756446335:web:b4cd69618105e922741b4a',
+  measurementId: 'G-BSWQXE11DD',
 };
 
 const Firebase = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-export { Firebase, db };
+export {Firebase, db};

@@ -5,6 +5,7 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import {Button} from 'react-native-paper';
 import {Firebase, db} from '../Config/Firebase';
@@ -12,7 +13,7 @@ import {Firebase, db} from '../Config/Firebase';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'steelblue',
+    backgroundColor: '#353550',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -22,24 +23,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 50,
     fontFamily: 'sans-serif-medium',
-    color: '#fb5b5a',
+    color: '#42A5F5',
     margin: 10,
-  },
-  inputView: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
-    margin: 10,
-    borderRadius: 30,
   },
   inputText: {
+    width: 350,
     height: 55,
     position: 'relative',
+    backgroundColor: '#353540',
     fontSize: 18,
+    margin: 10,
     padding: 15,
     alignContent: 'center',
     color: 'white',
     fontWeight: '500',
+    borderRadius: 30,
+    borderWidth: 3,
+    borderColor: 'green',
   },
 });
 
@@ -51,21 +51,24 @@ export default class Login extends React.Component {
       password: '',
     };
   }
+
   handleLogin = () => {
     return async () => {
       try {
-        const response = await Firebase.auth().signInWithEmailAndPassword(
-          this.state.email,
-          this.state.password,
-        );
+        const user = this.state;
 
-        const user = await db.collection('users').doc(response.user.uid).get();
-        this.state = {email: '', password: ''};
-        this.props.navigation.navigate('MainScreen', {
-          accountDetails: user.data(),
-        });
+        const response = await Firebase.auth()
+          .signInWithEmailAndPassword(user.email, user.password)
+          .then(() => {
+            this.setState({
+              email: '',
+              password: '',
+            });
+            this.props.navigation.navigate('MainScreen');
+          })
+          .catch((error) => alert(error));
       } catch (e) {
-        alert(e);
+        console.log(e);
       }
     };
   };
@@ -73,29 +76,28 @@ export default class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.logo}>Hey there</Text>
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="Email..."
-            placeholderTextColor="#003f5c"
-            onChangeText={(text) =>
-              this.setState({email: text, password: this.state.password})
-            }
-          />
-        </View>
-        <View style={styles.inputView}>
-          <TextInput
-            style={styles.inputText}
-            placeholder="Password..."
-            placeholderTextColor="#003f5c"
-            secureTextEntry={true}
-            onChangeText={(text) =>
-              this.setState({email: this.state.email, password: text})
-            }
-            autoCapitalize="none"
-          />
-        </View>
+        <Text style={styles.logo}>Curated Tube</Text>
+        <TextInput
+          defaultValue={this.state.email}
+          style={styles.inputText}
+          placeholder="Email..."
+          placeholderTextColor="#aaaaaa"
+          onChangeText={(text) =>
+            this.setState({email: text, password: this.state.password})
+          }
+          autoCapitalize="none"
+        />
+        <TextInput
+          defaultValue={this.state.password}
+          style={styles.inputText}
+          placeholder="Password..."
+          placeholderTextColor="#aaaaaa"
+          secureTextEntry={true}
+          onChangeText={(text) =>
+            this.setState({email: this.state.email, password: text})
+          }
+          autoCapitalize="none"
+        />
         <View
           style={{
             flexDirection: 'column',
@@ -113,7 +115,7 @@ export default class Login extends React.Component {
             style={{
               fontSize: 20,
               fontWeight: '400',
-              color: 'black',
+              color: '#20bb30',
             }}>
             Don't have an account? Sign Up
           </Text>

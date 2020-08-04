@@ -1,99 +1,80 @@
-import React from "react";
-import { View, TextInput, StyleSheet } from "react-native";
-import { Button } from "react-native-paper";
-import { Firebase, db } from "../Config/Firebase";
+import React from 'react';
+import {View, TextInput, StyleSheet, Text} from 'react-native';
+import {Button} from 'react-native-paper';
+import {Firebase, db} from '../Config/Firebase';
 
 export default class SignUp extends React.Component {
   state = {
-    username: "",
-    password: "",
-    email: "",
-    phone_number: "",
+    password: '',
+    email: '',
   };
 
   onChangeText = (key, val) => {
-    this.setState({ [key]: val });
-  };
-
-  checkEmail = (email) => {
-    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-    if (reg.test(email.value) == false) this.onChangeText("email", email);
+    this.setState({[key]: val});
   };
 
   handleSignUp = () => {
-    return async () => {
-      try {
-        const user = this.state;
-        const response = await Firebase.auth().createUserWithEmailAndPassword(
-          user.email,
-          user.password
-        );
-
-        if (response.user.uid) {
-          db.collection("users").doc(response.user.uid).set(user);
-          this.props.navigation.navigate("LoginScreen");
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    };
+    Firebase.auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.setState({
+          email: '',
+          password: '',
+        });
+        this.props.navigation.navigate('LoginScreen');
+      })
+      .catch((error) => alert(error));
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <Text
+          style={{
+            fontWeight: 'bold',
+            fontSize: 50,
+            fontFamily: 'sans-serif-medium',
+            color: '#42A5F5',
+            margin: 10,
+          }}>
+          Curated Tube
+        </Text>
         <TextInput
+          defaultValue={this.state.email}
           style={styles.input}
-          placeholder="Username"
+          placeholder="Email..."
           autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={(val) => this.onChangeText("username", val)}
+          placeholderTextColor="#aaaaaa"
+          onChangeText={(val) => this.onChangeText('email', val)}
         />
         <TextInput
+          defaultValue={this.state.password}
           style={styles.input}
-          placeholder="Password"
+          placeholder="Password..."
           secureTextEntry={true}
           autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={(val) => this.onChangeText("password", val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Email"
-          autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={(val) => this.onChangeText("email", val)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Phone Number"
-          autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={(val) => this.onChangeText("phone_number", val)}
-          keyboardType="numeric"
+          placeholderTextColor="#aaaaaa"
+          onChangeText={(val) => this.onChangeText('password', val)}
         />
         <View
           style={{
-            flexDirection: "column",
+            flexDirection: 'column',
             height: 90,
             width: 150,
-            justifyContent: "space-around",
-          }}
-        >
+            justifyContent: 'space-around',
+          }}>
           <Button
             title="Sign Up"
             mode="contained"
             color="#42A5F5"
-            onPress={this.handleSignUp()}
-          >
+            onPress={this.handleSignUp}>
             Sign Up
           </Button>
           <Button
             mode="contained"
             color="#42A5F5"
-            onPress={() => this.props.navigation.navigate("LoginScreen")}
-          >
-            Logout
+            onPress={() => this.props.navigation.navigate('LoginScreen')}>
+            Login
           </Button>
         </View>
       </View>
@@ -105,18 +86,24 @@ const styles = StyleSheet.create({
   input: {
     width: 350,
     height: 55,
-    backgroundColor: "#42A5F5",
+    position: 'relative',
+    backgroundColor: '#353540',
+    fontSize: 18,
     margin: 10,
     padding: 15,
-    color: "white",
+    alignContent: 'center',
+    color: 'white',
+    fontWeight: '500',
     borderRadius: 30,
-    fontSize: 18,
-    fontWeight: "500",
+    borderWidth: 3,
+    borderColor: 'green',
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "steelblue",
-    alignItems: "center",
+    backgroundColor: '#353550',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
   },
 });
