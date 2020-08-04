@@ -1,7 +1,7 @@
-import React from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import Category from "./Category";
-import SearchBar from "./SearchBar";
+import React from 'react';
+import {ScrollView} from 'react-native-gesture-handler';
+import Category from './Category';
+import SearchBar from './SearchBar';
 
 export default class CategoryList extends React.Component {
   render() {
@@ -18,3 +18,9 @@ export default class CategoryList extends React.Component {
     );
   }
 }
+
+// const styles = StyleSheet.create({
+//   category: {
+//     backgroundColor: 'green',
+//   },
+// });
