@@ -10,14 +10,17 @@ const styles = StyleSheet.create({
     borderColor: 'green',
     alignItems: 'center',
     alignContent: 'center',
+    justifyContent: 'center',
     backgroundColor: '#353540',
   },
   textView: {
-    fontSize: 30,
+    flex: 1,
+    fontSize: 25,
     color: 'white',
     alignContent: 'center',
     alignItems: 'center',
-    fontWeight: '400',
+    justifyContent: 'center',
+    fontWeight: 'normal',
   },
 });
 
@@ -30,7 +33,7 @@ export default class Category extends React.Component {
           onPress={this.props.onSelectCategory}>
           <Text style={styles.textView}>{this.props.category.title}</Text>
           <Text style={styles.textView}>
-            {this.props.category.numVideos} Videos
+            {this.props.category.numVideos} Lectures
           </Text>
         </TouchableOpacity>
       </View>
