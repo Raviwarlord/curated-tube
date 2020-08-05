@@ -8,11 +8,15 @@ const VideoListIcon = (props, navigation) => {
       style={{
         flex: 1,
         margin: 10,
+        height: 200,
+        width: 350,
         padding: 15,
         alignItems: 'center',
         alignContent: 'center',
         borderRadius: 40,
         borderWidth: 5,
+        justifyContent: 'center',
+        backgroundColor: '#353537',
         borderColor: 'green',
       }}>
       <TouchableOpacity
