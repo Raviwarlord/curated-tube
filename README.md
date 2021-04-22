@@ -22,12 +22,12 @@ For retriving the data form youtube I have used the youtube's API to fetch the v
 ## Working 
 
 First you had to login using your email and password if you had not signed up you can sing up, it will navigate you to the sign up page where you can provide the deatails.
-Screenshot_2020-12-13-21-33-48-314_com.helloworld.jpg![image](https://user-images.githubusercontent.com/49595116/115691413-a89b7f80-a37b-11eb-850b-38706326cd48.png | width=100)
+![image](https://user-images.githubusercontent.com/49595116/115691413-a89b7f80-a37b-11eb-850b-38706326cd48.png =200X200)
 
 After signing in you would see list of cureted courses available for you to choose from if you want to learn Data structures and Algorithms then you can click on that perticular course and it will navigate you to its screen and will provide the lecutures or number of videos available in that course, you can choose whichever you want to see and it will start playing. Enjoy Learning!
-Screenshot_2020-12-13-21-34-03-829_com.helloworld.jpg![image](https://user-images.githubusercontent.com/49595116/115691843-09c35300-a37c-11eb-899a-91c47a1a1c01.png)
-Screenshot_2020-12-13-21-34-10-431_com.helloworld.jpg![image](https://user-images.githubusercontent.com/49595116/115691862-0def7080-a37c-11eb-91ec-a706dff1b9e6.png)
-Screenshot_2020-12-13-21-34-38-225_com.helloworld.jpg![image](https://user-images.githubusercontent.com/49595116/115691895-134cbb00-a37c-11eb-9e12-52f2c2cfafc1.png)
+![image](https://user-images.githubusercontent.com/49595116/115691843-09c35300-a37c-11eb-899a-91c47a1a1c01.png)
+![image](https://user-images.githubusercontent.com/49595116/115691862-0def7080-a37c-11eb-91ec-a706dff1b9e6.png)
+![image](https://user-images.githubusercontent.com/49595116/115691895-134cbb00-a37c-11eb-9e12-52f2c2cfafc1.png)
 
 
 ## Further Improvemets
