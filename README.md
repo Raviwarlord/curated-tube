@@ -22,7 +22,7 @@ For retriving the data form youtube I have used the youtube's API to fetch the v
 ## Working 
 
 First you had to login using your email and password if you had not signed up you can sing up, it will navigate you to the sign up page where you can provide the deatails.
-![](https://user-images.githubusercontent.com/49595116/115691413-a89b7f80-a37b-11eb-850b-38706326cd48.png =200X200)
+![image](https://user-images.githubusercontent.com/49595116/115691413-a89b7f80-a37b-11eb-850b-38706326cd48.png)
 
 After signing in you would see list of cureted courses available for you to choose from if you want to learn Data structures and Algorithms then you can click on that perticular course and it will navigate you to its screen and will provide the lecutures or number of videos available in that course, you can choose whichever you want to see and it will start playing. Enjoy Learning!
 ![image](https://user-images.githubusercontent.com/49595116/115691843-09c35300-a37c-11eb-899a-91c47a1a1c01.png)
