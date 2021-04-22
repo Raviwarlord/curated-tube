@@ -2,8 +2,7 @@
 
 ## Overview
 
-This application was the result of my react-native learning phase, I wanted to use react-native to make some application so have some hands on knowledge about how the framewrk works. This appliction was made by keeping in mind the problems faced by students or developers trying to learn new skill or some framework, there are 
-lot of sources but to screen through these sources and select the best is a hassle and a time consuming process, what this application does is makes this process a little simpler. 
+This application was the result of my react-native learning phase, I wanted to use react-native to make some application so to have some hands on knowledge about how the framewrk works. This appliction was made by keeping in mind the problems faced by students or developers trying to learn new skill or some framework, there are lot of sources but to screen through these sources and select the best is a hassle and a time consuming process, what this application does is makes this process a little simpler.
 
 This application contains video lectures of some of the popular framworks and technologies that i have selcted, I wanted to use the content that is freely available so I choose youtube as it has its API available it made my job easier.
 
